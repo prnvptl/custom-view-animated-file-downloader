@@ -1,6 +1,6 @@
 # Downloader App
 
-Custom views , Drawing with Canvas, Animations (with motionlayout), Notifications
+Custom views , Drawing with Canvas, Animations (with motionlayout), Notifications, Broadcast Recievers
 
 Downloads from a specific set of URLs. Uses custom views, canvas to draw, motionlayout for animations and notifications
 Created a custom view button that animates while download is in progress. A notification will be sent once the download is complete. When a user clicks on notification, the user lands on detail activity and the notification gets dismissed. In detail activity, the status of the download will be displayed and animated via MotionLayout upon opening the activity.
