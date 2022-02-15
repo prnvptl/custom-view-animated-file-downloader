@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         notificationManager = getSystemService(NotificationManager::class.java)
-        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
         createChannel(
             getString(R.string.app_notif_channel_id),
             getString(R.string.notification_title)
@@ -57,6 +56,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        super.onStart()
+    }
+
+    override fun onStop() {
+        unregisterReceiver(receiver)
+        super.onStop()
     }
 
     private val receiver = object : BroadcastReceiver() {

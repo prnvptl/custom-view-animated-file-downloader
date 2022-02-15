@@ -60,8 +60,9 @@
         android:layout_margin="20dp"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/ok"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        app:loadingBackground="@color/colorPrimary"
+        app:submitTextSize="24sp"
+        app:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

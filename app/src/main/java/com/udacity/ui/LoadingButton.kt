@@ -21,6 +21,9 @@ class LoadingButton @JvmOverloads constructor(
     // progress 0-1
     private var progress = 0.5f
 
+    private val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.LoadingButton,
+        0, 0)
+
     // colors
     private var whiteColor = context.getColor(R.color.white)
     private var primaryColor = context.getColor(R.color.colorPrimary)
@@ -35,18 +38,18 @@ class LoadingButton @JvmOverloads constructor(
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         textAlign = Paint.Align.CENTER
-        color = whiteColor
-        textSize = 45.0f
+        color = typedArray.getColor(R.styleable.LoadingButton_textColor, whiteColor)
+        textSize = typedArray.getDimension(R.styleable.LoadingButton_submitTextSize, 20.0f)
     }
 
     private val progressBarPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
-        color = darkPrimary
+        color = typedArray.getColor(R.styleable.LoadingButton_loadingProgressColor, darkPrimary)
     }
 
     private val progressCriclePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
-        color = loadingCricleColor
+        color = typedArray.getColor(R.styleable.LoadingButton_loadingCircleColor, loadingCricleColor)
     }
 
     private var valueAnimator = ValueAnimator()
@@ -100,7 +103,7 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
         canvas?.apply {
             // draw background
-            drawColor(primaryColor)
+            drawColor(typedArray.getColor(R.styleable.LoadingButton_loadingBackground, primaryColor))
             textPaint.getTextBounds(text, 0, text.length, textRect)
             if(buttonState == ButtonState.Loading) {
                 canvas.drawRect(0f, 0f, progress * widthSize, heightSize.toFloat(), progressBarPaint)
